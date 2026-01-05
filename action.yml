@@ -56,7 +56,7 @@ runs:
         curl -sLO http://archive.ubuntu.com/ubuntu/pool/universe/c/criu/criu_3.16.1-2_amd64.deb && sudo dpkg -i criu_3.16.1-2_amd64.deb
 
         echo "INFO: Installing Podman..."
-        sudo apt-get -qq -y install --allow-unauthenticated podman || {
+        sudo apt-get -qq -y install --allow-unauthenticated podman buildah || {
           echo "WARN: Primary installation failed. Trying fallback repository..."
           sudo sh -c "echo 'deb http://ftp.lysator.liu.se/pub/opensuse/repositories/devel:/kubic:/libcontainers:/unstable/xUbuntu_${ubuntu_version}/ /' > /etc/apt/sources.list.d/devel:kubic:libcontainers:unstable.list"
           curl -fsSL "http://ftp.lysator.liu.se/pub/opensuse/repositories/devel:/kubic:/libcontainers:/unstable/xUbuntu_${ubuntu_version}/Release.key" | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/kubic-fallback.gpg
